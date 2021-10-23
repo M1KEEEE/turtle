@@ -1,7 +1,7 @@
 import turtle as t
 
 
-def build_house(base_x = -500, base_y = -500, base_width = 100, base_height = 10, base_fill = "#000000", walls_width = 20, walls_height = 20, walls_fill = "#000000", roof_width = 0, roof_height = 0, roof_fill = "#000000"):
+def build_house(base_x = -500, base_y = -500, base_width = 100, base_height = 10, base_fill = "#000000", walls_width = 20, walls_height = 20, walls_fill = "#000000", door_width = 10, door_height = 20, door_fill = "#000000", roof_width = 0, roof_height = 0, roof_fill = "#000000"):
     """
         base_x — X левого нижнего угла фундамента
         base_y — Y левого нижнего угла фундамента
@@ -30,6 +30,12 @@ def build_house(base_x = -500, base_y = -500, base_width = 100, base_height = 10
     roof_x = walls_x - (walls_width * 0.1)
     roof_y = base_height + walls_height
     roof_width = walls_width * 1.2
+    door_width = 50
+    door_height = 100
+    door_x = walls_x + ((walls_width - door_width) / 2)
+    door_y = base_y + base_height
+    door_width = 50
+    door_height = 100
 
 
     def build_base(base_x, base_y, base_width, base_height, base_fill):
@@ -65,6 +71,22 @@ def build_house(base_x = -500, base_y = -500, base_width = 100, base_height = 10
         t.forward(walls_height)
         t.end_fill()
 
+    def build_door(door_x, door_y, door_width,door_height, door_fill):
+        t.penup()
+        t.goto(door_x, door_y)
+        t.setheading(0)
+        t.fillcolor(door_fill)
+        t.pendown()
+        t.begin_fill()
+        t.forward(door_width)
+        t.left(90)
+        t.forward(door_height)
+        t.left(90)
+        t.forward(door_width)
+        t.left(90)
+        t.forward(door_height)
+        t.end_fill()
+
 
     def build_roof(roof_x, roof_y, roof_width, roof_height, roof_fill):
         t.penup()
@@ -81,8 +103,9 @@ def build_house(base_x = -500, base_y = -500, base_width = 100, base_height = 10
 
     build_base(base_x, base_y, base_width, base_height, base_fill)
     build_walls(walls_x, walls_y, walls_width, walls_height, walls_fill)
+    build_door(door_x, door_y, door_width, door_height, door_fill)
     build_roof(roof_x, roof_y, roof_width, roof_height, roof_fill)
 
 
-build_house(base_x = 0, base_y = 0, base_width = 200, base_height = 10, base_fill = "#660000", walls_height = 150, walls_fill = "#FF9999", roof_height = 100, roof_fill = "green")
+build_house(base_x = 0, base_y = 0, base_width = 200, base_height = 10, base_fill = "#660000", door_fill = "#FF0000", walls_height = 150, walls_fill = "#FF9999", roof_height = 100, roof_fill = "green")
 t.done()
