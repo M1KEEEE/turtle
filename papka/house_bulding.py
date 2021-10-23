@@ -53,7 +53,7 @@ def build_house(base_x = -500, base_y = -500, base_width = 100, base_height = 10
     door_x = walls_x + ((walls_width - door_width) / 2)
     door_y = base_y + base_height
     roof_x = walls_x - (walls_width * 0.1)
-    roof_y = base_height + walls_height
+    roof_y = walls_y + walls_height
     roof_width = walls_width * 1.2
 
 
@@ -115,9 +115,11 @@ def build_house(base_x = -500, base_y = -500, base_width = 100, base_height = 10
         t.pendown()
         t.begin_fill()
         t.forward(roof_width)
-        t.goto(walls_width / 2, base_height + walls_height + roof_height)
+        t.goto((roof_x + (roof_width / 2)), roof_y + roof_height)
+        #t.goto(walls_width / 2, base_height + walls_height + roof_height)
         t.goto(roof_x, roof_y)
         t.end_fill()
+        t.penup()
 
 
     build_base(base_x, base_y, base_width, base_height, base_fill)
@@ -126,5 +128,5 @@ def build_house(base_x = -500, base_y = -500, base_width = 100, base_height = 10
     build_roof(roof_x, roof_y, roof_width, roof_height, roof_fill)
 
 
-build_house(base_x = 0, base_y = 0, base_width = 200, base_height = 10, base_fill = "#660000", walls_height = 150, walls_fill = "#FF9999", roof_height = 100, roof_fill = "green", door_fill = "#000000")
+build_house(base_x = 0, base_y = 0, base_width = 200, base_height = 10, base_fill = "#660000", walls_height = 200, walls_fill = "#FF9900", roof_height = 100, roof_fill = "green", door_fill = "#000000")
 t.done()
